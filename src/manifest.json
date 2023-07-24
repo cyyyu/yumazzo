@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Chrome Extension with Tailwind, React & Webpack",
-  "description": "A chrome extension boilerplate built with Tailwind 3, React 17, Webpack 5, and Webpack Dev Server 4",
+  "name": "yumazzo",
+  "description": "A convenient Chrome extension that effortlessly searches and adds recipes to your collection.",
   "options_page": "options.html",
   "background": { "service_worker": "background.bundle.js" },
   "action": {
