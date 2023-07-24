@@ -3,7 +3,7 @@ import React from 'react';
 
 const recipeProperties = [
   'protein',
-  'spiceLevel',
+  'produce',
   'spice',
   'cookingOil',
   'volume',
@@ -15,7 +15,7 @@ const recipeProperties = [
 const recipePropertyNamesMap: Map<typeof recipeProperties[number], string> =
   new Map([
     ['protein', 'Protein'],
-    ['spiceLevel', 'Spice Level'],
+    ['produce', 'Produce'],
     ['spice', 'Spices'],
     ['cookingOil', 'Cooking Oil'],
     ['volume', 'Volume/Weight'],
@@ -31,7 +31,7 @@ const recipePropertyColorsMap: Map<
   RecipePropertyColor
 > = new Map([
   ['protein', 'regular'],
-  ['spiceLevel', 'hot'],
+  ['produce', 'hot'],
   ['spice', 'gradient'],
   ['cookingOil', 'gradient'],
   ['volume', 'regular'],
