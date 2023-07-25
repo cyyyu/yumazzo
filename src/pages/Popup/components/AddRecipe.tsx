@@ -4,6 +4,7 @@ import { useSetAtom } from 'jotai';
 import { viewAtom } from '../store';
 import Input from './Input';
 import Textarea from './Textarea';
+import Select from './Select';
 
 export default function AddRecipe() {
   const setView = useSetAtom(viewAtom);
@@ -26,13 +27,13 @@ export default function AddRecipe() {
       <form>
         <div className="grid grid-cols-2 gap-2.5 mb-6">
           <Input label="Name" type="text" />
-          <Input label="Origin" type="text" />
+          <Select label="Origin" placeholder="Country origin" />
         </div>
         <div className="mb-6">
           <Textarea label="Description" />
         </div>
         <div className="grid grid-cols-2 gap-2.5 mb-6">
-          <Input label="Difficulty" type="text" />
+          <Select label="Difficulty" />
           <Input label="Protein" type="text" />
         </div>
         <div className="grid grid-cols-2 gap-2.5 mb-6">
@@ -45,7 +46,7 @@ export default function AddRecipe() {
         </div>
         <div className="grid grid-cols-2 gap-2.5 mb-6">
           <Input label="Serves" type="number" surfix="people" />
-          <Input label="Authenticity" type="text" />
+          <Select label="Authenticity" />
         </div>
         <div className="mb-6">
           <Input label="Stock" type="text" />
