@@ -3,8 +3,8 @@ import TwitterIcon from '../../../assets/img/Twitter.svg';
 import TelegramIcon from '../../../assets/img/Telegram.svg';
 import MediumIcon from '../../../assets/img/Medium.svg';
 import SpainFlagIcon from '../../../assets/img/SpainFlag.svg';
-import { useSetAtom } from 'jotai';
-import { viewAtom } from '../store';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { selectedRecipeAtom, viewAtom } from '../store';
 
 export default function Toolbar() {
   return (
@@ -17,10 +17,11 @@ export default function Toolbar() {
 }
 
 function SelectedRecipe() {
+  const selectedRecipe = useAtomValue(selectedRecipeAtom);
   return (
     <div className="text-white text-sm flex items-center">
       <img src={SpainFlagIcon} className="w-6 mr-2.5" alt="Spain Flag" />
-      Spanish Paella
+      {selectedRecipe?.name || ''}
     </div>
   );
 }

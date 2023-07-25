@@ -1,5 +1,7 @@
-import clsx from 'clsx';
 import React from 'react';
+import clsx from 'clsx';
+import { useAtomValue } from 'jotai';
+import { selectedRecipeAtom } from '../store';
 
 const recipeProperties = [
   'protein',
@@ -41,13 +43,14 @@ const recipePropertyColorsMap: Map<
 ]);
 
 export default function RecipeDetails() {
+  const selectedRecipe = useAtomValue(selectedRecipeAtom);
   return (
     <div className="grid grid-cols-2 gap-y-3 gap-x-6 py-[13px] px-6 bg-[#131823] rounded-md">
       {recipeProperties.map((property) => (
         <RecipeProperty
           key={property}
           name={recipePropertyNamesMap.get(property) || ''}
-          value="test test"
+          value={selectedRecipe?.[property]}
           valueFg={recipePropertyColorsMap.get(property) || 'regular'}
         />
       ))}
@@ -61,7 +64,7 @@ function RecipeProperty({
   valueFg = 'regular',
 }: {
   name: string;
-  value: string;
+  value: string | number | undefined;
   valueFg: 'regular' | 'hot' | 'gradient';
 }) {
   const valueFgGradient =
