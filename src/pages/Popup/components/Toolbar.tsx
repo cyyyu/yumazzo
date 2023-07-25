@@ -3,6 +3,8 @@ import TwitterIcon from '../../../assets/img/Twitter.svg';
 import TelegramIcon from '../../../assets/img/Telegram.svg';
 import MediumIcon from '../../../assets/img/Medium.svg';
 import SpainFlagIcon from '../../../assets/img/SpainFlag.svg';
+import { useSetAtom } from 'jotai';
+import { viewAtom } from '../store';
 
 export default function Toolbar() {
   return (
@@ -40,8 +42,13 @@ function SocialMediaButtons() {
 }
 
 function AddRecipeButton() {
+  const setView = useSetAtom(viewAtom);
+
   return (
-    <button className="rounded-md bg-[#171f2f] px-[7px] h-6 text-white text-sm">
+    <button
+      className="rounded-md bg-[#171f2f] px-[7px] h-6 text-white text-sm"
+      onClick={() => setView('add-recipe')}
+    >
       + Add recipe
     </button>
   );
