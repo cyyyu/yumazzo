@@ -40,11 +40,11 @@ function SearchResultItem({ recipe }: { recipe: IRecipe }) {
 
   return (
     <div
-      className="p-2 flex items-center bg-[#181f30]"
+      className="p-2 flex items-center hover:bg-[#181f30] cursor-pointer"
       onClick={() => {
+        setSelectedRecipe(async () => recipe);
         setSearchingValue('');
         setShowMenu(false);
-        setSelectedRecipe(async () => recipe);
       }}
     >
       <img src={SpainFlagIcon} className="w-6 mr-1.5" alt="Spain Flag" />

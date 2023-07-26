@@ -15,11 +15,9 @@ export default function SearchBar() {
         placeholder="Search cuisine"
         className="text-white bg-[#131823] outline-none grow"
         onChange={(e) => setSearchingValue(e.target.value)}
+        onClick={(e) => e.stopPropagation()}
         onFocus={() => {
           setShowMenu(true);
-        }}
-        onBlur={() => {
-          setShowMenu(false);
         }}
       />
     </div>
