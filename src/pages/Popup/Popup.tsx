@@ -4,6 +4,7 @@ import Toolbar from './components/Toolbar';
 import RecipeDescription from './components/RecipeDescription';
 import RecipeDetails from './components/RecipeDetails';
 import AddRecipe from './components/AddRecipe';
+import SearchMenu from './components/SearchMenu';
 import { useAtomValue } from 'jotai';
 import { viewAtom } from './store';
 
@@ -15,9 +16,12 @@ const Popup = () => {
       {view === 'recipe-details' ? (
         <>
           <SearchBar />
-          <Toolbar />
-          <RecipeDescription />
-          <RecipeDetails />
+          <div className="pt-6 relative w-full">
+            <SearchMenu />
+            <Toolbar />
+            <RecipeDescription />
+            <RecipeDetails />
+          </div>
         </>
       ) : (
         <AddRecipe />

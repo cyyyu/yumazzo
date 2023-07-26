@@ -4,8 +4,7 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import {
   newRecipeAtom,
   recipesAtom,
-  recipesLenAtom,
-  selectedRecipeIdxAtom,
+  selectedRecipeAtom,
   viewAtom,
 } from '../store';
 import Input from './Input';
@@ -19,9 +18,8 @@ export default function AddRecipe() {
   const setView = useSetAtom(viewAtom);
 
   const setRecipes = useSetAtom(recipesAtom);
-  const recipesLen = useAtomValue(recipesLenAtom);
   const newRecipe = useAtomValue(newRecipeAtom);
-  const setSelectedRecipeIdx = useSetAtom(selectedRecipeIdxAtom);
+  const setSelectedRecipe = useSetAtom(selectedRecipeAtom);
 
   const setName = useFocusAtom(newRecipeAtom, 'name');
   const setOrigin = useFocusAtom(newRecipeAtom, 'origin');
@@ -42,7 +40,7 @@ export default function AddRecipe() {
         setRecipes(async (recipes) => {
           return [...(await recipes), newRecipe];
         });
-        setSelectedRecipeIdx(recipesLen > 0 ? recipesLen - 1 : 0);
+        setSelectedRecipe(async () => newRecipe);
         setView('recipe-details');
       }
     });
