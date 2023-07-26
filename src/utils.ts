@@ -1,15 +1,15 @@
-import type { IRecipe } from "./type"
+import type { IRecipe } from "./type";
 
 export function mapDifficulty(difficulty: number): string {
   switch (difficulty) {
     case 1:
-      return "Easy"
+      return "Easy";
     case 2:
-      return "Medium"
+      return "Medium";
     case 3:
-      return "Hard"
+      return "Hard";
     default:
-      return "Unknown"
+      return "Unknown";
   }
 }
 
@@ -20,15 +20,12 @@ export function validateRecipe(recipe: IRecipe) {
     !recipe.name ||
     !recipe.origin ||
     !recipe.description ||
-    !recipe.difficulty ||
     !recipe.produce ||
     !recipe.spice ||
     !recipe.cookingOil ||
-    !recipe.volume ||
-    !recipe.serves ||
     !recipe.authenticity ||
     !recipe.stock
   )
-    return false
-  return true
+    return false;
+  return true;
 }

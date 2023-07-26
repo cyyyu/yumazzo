@@ -1,51 +1,53 @@
-import { useAtomValue, useSetAtom } from "jotai"
-import React from "react"
+import { useAtomValue, useSetAtom } from "jotai";
+import React from "react";
 
-import ArrowLeftIcon from "../../assets/img/ArrowLeft.svg"
-import { addRecipe } from "../api"
-import { useFocusAtom } from "../hooks/useFocusAtom"
+import ArrowLeftIcon from "../../assets/img/ArrowLeft.svg";
+import { addRecipe } from "../api";
+import { useFocusAtom } from "../hooks/useFocusAtom";
 import {
   newRecipeAtom,
   recipesAtom,
   selectedRecipeAtom,
-  viewAtom
-} from "../store"
-import { validateRecipe } from "../utils"
-import Input from "./Input"
-import Select from "./Select"
-import Textarea from "./Textarea"
+  viewAtom,
+} from "../store";
+import { validateRecipe } from "../utils";
+import Input from "./Input";
+import Select from "./Select";
+import Textarea from "./Textarea";
 
 export default function AddRecipe() {
-  const setView = useSetAtom(viewAtom)
+  const setView = useSetAtom(viewAtom);
 
-  const setRecipes = useSetAtom(recipesAtom)
-  const newRecipe = useAtomValue(newRecipeAtom)
-  const setSelectedRecipe = useSetAtom(selectedRecipeAtom)
+  const setRecipes = useSetAtom(recipesAtom);
+  const newRecipe = useAtomValue(newRecipeAtom);
+  const setSelectedRecipe = useSetAtom(selectedRecipeAtom);
 
-  const setName = useFocusAtom(newRecipeAtom, "name")
-  const setOrigin = useFocusAtom(newRecipeAtom, "origin")
-  const setDescription = useFocusAtom(newRecipeAtom, "description")
-  const setDifficulty = useFocusAtom(newRecipeAtom, "difficulty")
-  const setProtein = useFocusAtom(newRecipeAtom, "protein")
-  const setProduce = useFocusAtom(newRecipeAtom, "produce")
-  const setSpice = useFocusAtom(newRecipeAtom, "spice")
-  const setCookingOil = useFocusAtom(newRecipeAtom, "cookingOil")
-  const setVolume = useFocusAtom(newRecipeAtom, "volume")
-  const setServes = useFocusAtom(newRecipeAtom, "serves")
-  const setAuthenticity = useFocusAtom(newRecipeAtom, "authenticity")
-  const setStock = useFocusAtom(newRecipeAtom, "stock")
+  const setName = useFocusAtom(newRecipeAtom, "name");
+  const setOrigin = useFocusAtom(newRecipeAtom, "origin");
+  const setDescription = useFocusAtom(newRecipeAtom, "description");
+  const setDifficulty = useFocusAtom(newRecipeAtom, "difficulty");
+  const setProtein = useFocusAtom(newRecipeAtom, "protein");
+  const setProduce = useFocusAtom(newRecipeAtom, "produce");
+  const setSpice = useFocusAtom(newRecipeAtom, "spice");
+  const setCookingOil = useFocusAtom(newRecipeAtom, "cookingOil");
+  const setVolume = useFocusAtom(newRecipeAtom, "volume");
+  const setServes = useFocusAtom(newRecipeAtom, "serves");
+  const setAuthenticity = useFocusAtom(newRecipeAtom, "authenticity");
+  const setStock = useFocusAtom(newRecipeAtom, "stock");
 
   const onAddRecipe = () => {
     addRecipe(newRecipe).then(() => {
       if (validateRecipe(newRecipe)) {
         setRecipes(async (recipes) => {
-          return [...(await recipes), newRecipe]
-        })
-        setSelectedRecipe(async () => newRecipe)
-        setView("recipe-details")
+          return [...(await recipes), newRecipe];
+        });
+        setSelectedRecipe(async () => newRecipe);
+        setView("recipe-details");
+      } else {
+        alert("Please fill all fields.");
       }
-    })
-  }
+    });
+  };
 
   return (
     <div>
@@ -78,7 +80,7 @@ export default function AddRecipe() {
             { label: "Albania", value: "al" },
             { label: "Algeria", value: "dz" },
             { label: "Andorra", value: "ad" },
-            { label: "Angola", value: "ao" }
+            { label: "Angola", value: "ao" },
           ]}
           onChange={(e) => setOrigin(e.target.value)}
         />
@@ -99,7 +101,7 @@ export default function AddRecipe() {
           options={[
             { label: "Easy", value: 1 },
             { label: "Medium", value: 2 },
-            { label: "Hard", value: 3 }
+            { label: "Hard", value: 3 },
           ]}
           onChange={(e) => setDifficulty(e.target.value)}
         />
@@ -152,7 +154,7 @@ export default function AddRecipe() {
           defaultValue={newRecipe?.authenticity}
           options={[
             { label: "Unverified", value: "Unverified" },
-            { label: "Verified", value: "Verified" }
+            { label: "Verified", value: "Verified" },
           ]}
           onChange={(e) => setAuthenticity(e.target.value)}
         />
@@ -168,10 +170,11 @@ export default function AddRecipe() {
       <div>
         <button
           className="rounded-md w-full bg-[#764af4] px-[14px] py-2.5 text-white text-base font-semibold"
-          onClick={onAddRecipe}>
+          onClick={onAddRecipe}
+        >
           Add Recipe
         </button>
       </div>
     </div>
-  )
+  );
 }
