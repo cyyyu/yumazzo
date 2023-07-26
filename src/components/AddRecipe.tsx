@@ -5,6 +5,7 @@ import ArrowLeftIcon from "../../assets/img/ArrowLeft.svg";
 import { addRecipe } from "../api";
 import { useFocusAtom } from "../hooks/useFocusAtom";
 import {
+  clearNewRecipeAtom,
   newRecipeAtom,
   recipesAtom,
   selectedRecipeAtom,
@@ -21,6 +22,7 @@ export default function AddRecipe() {
   const setRecipes = useSetAtom(recipesAtom);
   const newRecipe = useAtomValue(newRecipeAtom);
   const setSelectedRecipe = useSetAtom(selectedRecipeAtom);
+  const clearNewRecipe = useSetAtom(clearNewRecipeAtom);
 
   const setName = useFocusAtom(newRecipeAtom, "name");
   const setOrigin = useFocusAtom(newRecipeAtom, "origin");
@@ -43,6 +45,7 @@ export default function AddRecipe() {
         });
         setSelectedRecipe(async () => newRecipe);
         setView("recipe-details");
+        clearNewRecipe();
       } else {
         alert("Please fill all fields.");
       }
