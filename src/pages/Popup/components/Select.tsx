@@ -3,17 +3,34 @@ import CaretDownIcon from '../../../assets/img/CaretDown.svg';
 
 interface ISelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label: string;
+  options: { label: string; value: string | number }[];
 }
 
-export default function Select({ label, placeholder }: ISelectProps) {
+export default function Select({
+  label,
+  options,
+  placeholder,
+  ...rest
+}: ISelectProps) {
   return (
     <div className="text-base">
       <label className="text-white font-semibold">{label}</label>
       <div className="relative mt-2.5">
-        <select className="w-full text-[#e9eaf6] rounded-md shadow-[0px_0px_0px_1px_#5b6178] bg-[#181f38] outline-none h-10 px-[11px] appearance-none">
+        <select
+          className="w-full text-[#e9eaf6] rounded-md shadow-[0px_0px_0px_1px_#5b6178] bg-[#181f38] outline-none h-10 px-[11px] appearance-none"
+          {...rest}
+          {...(placeholder ? { defaultValue: placeholder } : {})}
+        >
           {placeholder && (
-            <option value={placeholder} selected disabled></option>
+            <option value={placeholder} disabled>
+              {placeholder}
+            </option>
           )}
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         </select>
         <img
           src={CaretDownIcon}

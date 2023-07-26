@@ -5,15 +5,10 @@ import RecipeDescription from './components/RecipeDescription';
 import RecipeDetails from './components/RecipeDetails';
 import AddRecipe from './components/AddRecipe';
 import { useAtomValue } from 'jotai';
-import { viewAtom, recipesAtom } from './store';
+import { viewAtom } from './store';
 
 const Popup = () => {
   const view = useAtomValue(viewAtom);
-  const recipes = useAtomValue(recipesAtom);
-
-  if (recipes.state === 'loading') {
-    return <></>;
-  }
 
   return (
     <div className="w-full h-full bg-[#0D1119] p-6 overflow-auto">
