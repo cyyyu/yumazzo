@@ -38,14 +38,22 @@ function SearchResultItem({ recipe }: { recipe: IRecipe }) {
   const setSearchingValue = useSetAtom(searchingValueAtom);
   const setSelectedRecipe = useSetAtom(selectedRecipeAtom);
 
+  const onSelectRecipe = () => {
+    setSelectedRecipe(async () => recipe);
+    setSearchingValue('');
+    setShowMenu(false);
+  };
+
   return (
     <div
       className="p-2 flex items-center hover:bg-[#181f30] cursor-pointer"
-      onClick={() => {
-        setSelectedRecipe(async () => recipe);
-        setSearchingValue('');
-        setShowMenu(false);
+      onClick={onSelectRecipe}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          onSelectRecipe();
+        }
       }}
+      tabIndex={0}
     >
       <img src={SpainFlagIcon} className="w-6 mr-1.5" alt="Spain Flag" />
       <span className="text-base font-medium mr-auto">{recipe.name}</span>
